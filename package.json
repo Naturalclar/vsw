@@ -1,0 +1,44 @@
+{
+  "name": "vsw",
+  "version": "0.0.0",
+  "description": "VSCode theme switcher CLI tool",
+  "main": "dist/index.js",
+  "bin": {
+    "vsw": "dist/index.js"
+  },
+  "author": "Naturalclar (https://github.com/Naturalclar)",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Naturalclar/vsw.git"
+  },
+  "scripts": {
+    "build": "tsc",
+    "type-check": "tsc -noEmit",
+    "lint": "biome check .",
+    "format": "biome format --write .",
+    "dev": "tsx src/index.ts",
+    "start": "node dist/index.js",
+    "prepare": "npm run build",
+    "prepublishOnly": "npm run lint && npm run build"
+  },
+  "dependencies": {
+    "chalk": "^5.3.0",
+    "commander": "^12.0.0",
+    "fs-extra": "^11.2.0",
+    "inquirer": "^9.2.15"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "1.5.3",
+    "@types/fs-extra": "^11.0.4",
+    "@types/inquirer": "^9.0.7",
+    "@types/node": "^20.11.30",
+    "tsx": "^4.7.1",
+    "typescript": "^5.8.3"
+  },
+  "types": "dist/index.d.ts",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Naturalclar/vsw/issues"
+  },
+  "homepage": "https://github.com/Naturalclar/vsw#readme"
+}
