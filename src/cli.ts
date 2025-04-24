@@ -1,26 +1,26 @@
-import { Command } from "commander";
-import inquirer from "inquirer";
-import { themeManager } from "./theme-manager";
-import { type Theme, configManager } from "./utils/config";
-import { logger } from "./utils/logger";
+import { Command } from 'commander';
+import inquirer from 'inquirer';
 import {
-  getAllPastelThemes,
-  getPastelThemeByName,
-  getPastelThemesByType,
-  type ThemePreset,
-} from "./theme-presets";
-import {
-  getAllVividThemes,
-  getVividThemeByName,
-  getVividThemesByType,
-  type VividTheme,
-} from "./vivid-themes";
-import {
+  type ColorTheme,
   getAllColorThemes,
   getColorThemeByName,
   getColorThemesByType,
-  type ColorTheme,
-} from "./color-themes";
+} from './color-themes';
+import { themeManager } from './theme-manager';
+import {
+  type ThemePreset,
+  getAllPastelThemes,
+  getPastelThemeByName,
+  getPastelThemesByType,
+} from './theme-presets';
+import { type Theme, configManager } from './utils/config';
+import { logger } from './utils/logger';
+import {
+  type VividTheme,
+  getAllVividThemes,
+  getVividThemeByName,
+  getVividThemesByType,
+} from './vivid-themes';
 
 /**
  * Create CLI program
@@ -29,16 +29,16 @@ export const createCLI = (): Command => {
   const program = new Command();
 
   program
-    .name("vsw")
-    .description("VSCode theme switcher")
-    .version("0.0.0")
-    .helpOption("-h, --help", "Display help for command");
+    .name('vsw')
+    .description('VSCode theme switcher')
+    .version('0.0.0')
+    .helpOption('-h, --help', 'Display help for command');
 
   // Set theme command
   program
-    .command("set")
-    .description("Set VSCode theme")
-    .argument("[theme-name]", "Theme name to set")
+    .command('set')
+    .description('Set VSCode theme')
+    .argument('[theme-name]', 'Theme name to set')
     .action(async (themeName?: string) => {
       try {
         if (themeName) {
@@ -49,17 +49,15 @@ export const createCLI = (): Command => {
           const favorites = await themeManager.getFavoriteThemes();
 
           if (favorites.length === 0) {
-            logger.warn(
-              'No favorite themes found. Add themes with "vsw add <theme-name>"'
-            );
+            logger.warn('No favorite themes found. Add themes with "vsw add <theme-name>"');
             return;
           }
 
           const { selectedTheme } = await inquirer.prompt([
             {
-              type: "list",
-              name: "selectedTheme",
-              message: "Select a theme:",
+              type: 'list',
+              name: 'selectedTheme',
+              message: 'Select a theme:',
               choices: favorites.map((theme) => ({
                 name: `${theme.name} (${theme.type})`,
                 value: theme.name,
@@ -77,28 +75,28 @@ export const createCLI = (): Command => {
 
   // List themes command
   program
-    .command("list")
-    .description("List favorite themes")
-    .option("-a, --all", "Show all themes")
-    .option("-d, --dark", "Show only dark themes")
-    .option("-l, --light", "Show only light themes")
+    .command('list')
+    .description('List favorite themes')
+    .option('-a, --all', 'Show all themes')
+    .option('-d, --dark', 'Show only dark themes')
+    .option('-l, --light', 'Show only light themes')
     .action(async (options) => {
       try {
         let themes: Theme[] = [];
 
         if (options.dark) {
-          themes = await themeManager.getFavoriteThemesByType("dark");
-          logger.info("Dark themes:");
+          themes = await themeManager.getFavoriteThemesByType('dark');
+          logger.info('Dark themes:');
         } else if (options.light) {
-          themes = await themeManager.getFavoriteThemesByType("light");
-          logger.info("Light themes:");
+          themes = await themeManager.getFavoriteThemesByType('light');
+          logger.info('Light themes:');
         } else {
           themes = await themeManager.getFavoriteThemes();
-          logger.info("All favorite themes:");
+          logger.info('All favorite themes:');
         }
 
         if (themes.length === 0) {
-          logger.warn("No themes found");
+          logger.warn('No themes found');
           return;
         }
 
@@ -112,29 +110,29 @@ export const createCLI = (): Command => {
 
   // Add theme command
   program
-    .command("add")
-    .description("Add a theme to favorites")
-    .argument("<theme-name>", "Theme name to add")
-    .option("-d, --dark", "Add as dark theme")
-    .option("-l, --light", "Add as light theme")
+    .command('add')
+    .description('Add a theme to favorites')
+    .argument('<theme-name>', 'Theme name to add')
+    .option('-d, --dark', 'Add as dark theme')
+    .option('-l, --light', 'Add as light theme')
     .action(async (themeName, options) => {
       try {
-        let themeType: "dark" | "light";
+        let themeType: 'dark' | 'light';
 
         if (options.dark) {
-          themeType = "dark";
+          themeType = 'dark';
         } else if (options.light) {
-          themeType = "light";
+          themeType = 'light';
         } else {
           // Ask for theme type
           const { type } = await inquirer.prompt([
             {
-              type: "list",
-              name: "type",
-              message: "Select theme type:",
+              type: 'list',
+              name: 'type',
+              message: 'Select theme type:',
               choices: [
-                { name: "Dark", value: "dark" },
-                { name: "Light", value: "light" },
+                { name: 'Dark', value: 'dark' },
+                { name: 'Light', value: 'light' },
               ],
             },
           ]);
@@ -150,9 +148,9 @@ export const createCLI = (): Command => {
 
   // Remove theme command
   program
-    .command("remove")
-    .description("Remove a theme from favorites")
-    .argument("[theme-name]", "Theme name to remove")
+    .command('remove')
+    .description('Remove a theme from favorites')
+    .argument('[theme-name]', 'Theme name to remove')
     .action(async (themeName?: string) => {
       try {
         if (themeName) {
@@ -162,15 +160,15 @@ export const createCLI = (): Command => {
           const favorites = await themeManager.getFavoriteThemes();
 
           if (favorites.length === 0) {
-            logger.warn("No favorite themes found");
+            logger.warn('No favorite themes found');
             return;
           }
 
           const { selectedTheme } = await inquirer.prompt([
             {
-              type: "list",
-              name: "selectedTheme",
-              message: "Select a theme to remove:",
+              type: 'list',
+              name: 'selectedTheme',
+              message: 'Select a theme to remove:',
               choices: favorites.map((theme) => ({
                 name: `${theme.name} (${theme.type})`,
                 value: theme.name,
@@ -187,8 +185,8 @@ export const createCLI = (): Command => {
 
   // Current theme command
   program
-    .command("current")
-    .description("Show current theme")
+    .command('current')
+    .description('Show current theme')
     .action(async () => {
       try {
         const currentTheme = await themeManager.getCurrentTheme();
@@ -196,7 +194,7 @@ export const createCLI = (): Command => {
         if (currentTheme) {
           logger.info(`Current theme: ${currentTheme}`);
         } else {
-          logger.warn("No theme set");
+          logger.warn('No theme set');
         }
       } catch (error) {
         logger.error(`Failed to get current theme: ${error}`);
@@ -205,8 +203,8 @@ export const createCLI = (): Command => {
 
   // Dark theme command
   program
-    .command("dark")
-    .description("Switch to a dark theme")
+    .command('dark')
+    .description('Switch to a dark theme')
     .action(async () => {
       try {
         await themeManager.setDarkTheme();
@@ -217,8 +215,8 @@ export const createCLI = (): Command => {
 
   // Light theme command
   program
-    .command("light")
-    .description("Switch to a light theme")
+    .command('light')
+    .description('Switch to a light theme')
     .action(async () => {
       try {
         await themeManager.setLightTheme();
@@ -229,31 +227,29 @@ export const createCLI = (): Command => {
 
   // Pastel themes command
   program
-    .command("pastel")
-    .description("Pastel theme options")
-    .option("-l, --list", "List all pastel themes")
-    .option("-d, --dark", "List dark pastel themes")
-    .option("-i, --light", "List light pastel themes")
-    .option("-s, --set", "Set a pastel theme")
+    .command('pastel')
+    .description('Pastel theme options')
+    .option('-l, --list', 'List all pastel themes')
+    .option('-d, --dark', 'List dark pastel themes')
+    .option('-i, --light', 'List light pastel themes')
+    .option('-s, --set', 'Set a pastel theme')
     .action(async (options) => {
       try {
         // List pastel themes
         if (options.list) {
           const themes = getAllPastelThemes();
-          logger.info("Available pastel themes:");
+          logger.info('Available pastel themes:');
 
           for (const theme of themes) {
-            logger.theme(
-              `${theme.name} (${theme.type}) - ${theme.description}`
-            );
+            logger.theme(`${theme.name} (${theme.type}) - ${theme.description}`);
           }
           return;
         }
 
         // List dark pastel themes
         if (options.dark) {
-          const themes = getPastelThemesByType("dark");
-          logger.info("Dark pastel themes:");
+          const themes = getPastelThemesByType('dark');
+          logger.info('Dark pastel themes:');
 
           for (const theme of themes) {
             logger.theme(`${theme.name} - ${theme.description}`);
@@ -263,8 +259,8 @@ export const createCLI = (): Command => {
 
         // List light pastel themes
         if (options.light) {
-          const themes = getPastelThemesByType("light");
-          logger.info("Light pastel themes:");
+          const themes = getPastelThemesByType('light');
+          logger.info('Light pastel themes:');
 
           for (const theme of themes) {
             logger.theme(`${theme.name} - ${theme.description}`);
@@ -278,9 +274,9 @@ export const createCLI = (): Command => {
 
           const { selectedTheme } = await inquirer.prompt([
             {
-              type: "list",
-              name: "selectedTheme",
-              message: "Select a pastel theme:",
+              type: 'list',
+              name: 'selectedTheme',
+              message: 'Select a pastel theme:',
               choices: themes.map((theme) => ({
                 name: `${theme.name} (${theme.type}) - ${theme.description}`,
                 value: theme.name,
@@ -293,10 +289,7 @@ export const createCLI = (): Command => {
           // Add to favorites if not already there
           const pastelTheme = getPastelThemeByName(selectedTheme);
           if (pastelTheme) {
-            await themeManager.addFavoriteTheme(
-              selectedTheme,
-              pastelTheme.type
-            );
+            await themeManager.addFavoriteTheme(selectedTheme, pastelTheme.type);
           }
         }
       } catch (error) {
@@ -306,31 +299,29 @@ export const createCLI = (): Command => {
 
   // Vivid themes command
   program
-    .command("vivid")
-    .description("Vivid theme options")
-    .option("-l, --list", "List all vivid themes")
-    .option("-d, --dark", "List dark vivid themes")
-    .option("-i, --light", "List light vivid themes")
-    .option("-s, --set", "Set a vivid theme")
+    .command('vivid')
+    .description('Vivid theme options')
+    .option('-l, --list', 'List all vivid themes')
+    .option('-d, --dark', 'List dark vivid themes')
+    .option('-i, --light', 'List light vivid themes')
+    .option('-s, --set', 'Set a vivid theme')
     .action(async (options) => {
       try {
         // List vivid themes
         if (options.list) {
           const themes = getAllVividThemes();
-          logger.info("Available vivid themes:");
+          logger.info('Available vivid themes:');
 
           for (const theme of themes) {
-            logger.theme(
-              `${theme.name} (${theme.type}) - ${theme.description}`
-            );
+            logger.theme(`${theme.name} (${theme.type}) - ${theme.description}`);
           }
           return;
         }
 
         // List dark vivid themes
         if (options.dark) {
-          const themes = getVividThemesByType("dark");
-          logger.info("Dark vivid themes:");
+          const themes = getVividThemesByType('dark');
+          logger.info('Dark vivid themes:');
 
           for (const theme of themes) {
             logger.theme(`${theme.name} - ${theme.description}`);
@@ -340,8 +331,8 @@ export const createCLI = (): Command => {
 
         // List light vivid themes
         if (options.light) {
-          const themes = getVividThemesByType("light");
-          logger.info("Light vivid themes:");
+          const themes = getVividThemesByType('light');
+          logger.info('Light vivid themes:');
 
           for (const theme of themes) {
             logger.theme(`${theme.name} - ${theme.description}`);
@@ -355,9 +346,9 @@ export const createCLI = (): Command => {
 
           const { selectedTheme } = await inquirer.prompt([
             {
-              type: "list",
-              name: "selectedTheme",
-              message: "Select a vivid theme:",
+              type: 'list',
+              name: 'selectedTheme',
+              message: 'Select a vivid theme:',
               choices: themes.map((theme) => ({
                 name: `${theme.name} (${theme.type}) - ${theme.description}`,
                 value: theme.name,
@@ -380,31 +371,29 @@ export const createCLI = (): Command => {
 
   // Color themes command
   program
-    .command("color")
-    .description("Color theme options")
-    .option("-l, --list", "List all color themes")
-    .option("-d, --dark", "List dark color themes")
-    .option("-i, --light", "List light color themes")
-    .option("-s, --set", "Set a color theme")
+    .command('color')
+    .description('Color theme options')
+    .option('-l, --list', 'List all color themes')
+    .option('-d, --dark', 'List dark color themes')
+    .option('-i, --light', 'List light color themes')
+    .option('-s, --set', 'Set a color theme')
     .action(async (options) => {
       try {
         // List color themes
         if (options.list) {
           const themes = getAllColorThemes();
-          logger.info("Available color themes:");
+          logger.info('Available color themes:');
 
           for (const theme of themes) {
-            logger.theme(
-              `${theme.name} (${theme.type}) - ${theme.description}`
-            );
+            logger.theme(`${theme.name} (${theme.type}) - ${theme.description}`);
           }
           return;
         }
 
         // List dark color themes
         if (options.dark) {
-          const themes = getColorThemesByType("dark");
-          logger.info("Dark color themes:");
+          const themes = getColorThemesByType('dark');
+          logger.info('Dark color themes:');
 
           for (const theme of themes) {
             logger.theme(`${theme.name} - ${theme.description}`);
@@ -414,8 +403,8 @@ export const createCLI = (): Command => {
 
         // List light color themes
         if (options.light) {
-          const themes = getColorThemesByType("light");
-          logger.info("Light color themes:");
+          const themes = getColorThemesByType('light');
+          logger.info('Light color themes:');
 
           for (const theme of themes) {
             logger.theme(`${theme.name} - ${theme.description}`);
@@ -429,9 +418,9 @@ export const createCLI = (): Command => {
 
           const { selectedTheme } = await inquirer.prompt([
             {
-              type: "list",
-              name: "selectedTheme",
-              message: "Select a color theme:",
+              type: 'list',
+              name: 'selectedTheme',
+              message: 'Select a color theme:',
               choices: themes.map((theme) => ({
                 name: `${theme.name} (${theme.type}) - ${theme.description}`,
                 value: theme.name,

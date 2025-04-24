@@ -3,7 +3,7 @@
  */
 export interface ThemePreset {
   name: string;
-  type: "dark" | "light";
+  type: 'dark' | 'light';
   description: string;
 }
 
@@ -12,63 +12,61 @@ export interface ThemePreset {
  */
 export const pastelThemes: ThemePreset[] = [
   {
-    name: "Pastel Light",
-    type: "light",
-    description: "A light theme with soft pastel colors",
+    name: 'Pastel Light',
+    type: 'light',
+    description: 'A light theme with soft pastel colors',
   },
   {
-    name: "Pastel Dark",
-    type: "dark",
-    description: "A dark theme with soft pastel colors",
+    name: 'Pastel Dark',
+    type: 'dark',
+    description: 'A dark theme with soft pastel colors',
   },
   {
-    name: "Panda Syntax",
-    type: "dark",
-    description: "A superminimal, dark syntax theme with pastel colors",
+    name: 'Panda Syntax',
+    type: 'dark',
+    description: 'A superminimal, dark syntax theme with pastel colors',
   },
   {
-    name: "Fairy Floss",
-    type: "dark",
-    description: "A pastel-colored theme with a magical feel",
+    name: 'Fairy Floss',
+    type: 'dark',
+    description: 'A pastel-colored theme with a magical feel',
   },
   {
-    name: "Rainglow - Piggy Light",
-    type: "light",
-    description: "A light pastel theme with pink accents",
+    name: 'Rainglow - Piggy Light',
+    type: 'light',
+    description: 'A light pastel theme with pink accents',
   },
   {
-    name: "Rainglow - Lavender Light",
-    type: "light",
-    description: "A light pastel theme with lavender accents",
+    name: 'Rainglow - Lavender Light',
+    type: 'light',
+    description: 'A light pastel theme with lavender accents',
   },
   {
-    name: "Rainglow - Tonic",
-    type: "dark",
-    description: "A dark theme with pastel green and blue accents",
+    name: 'Rainglow - Tonic',
+    type: 'dark',
+    description: 'A dark theme with pastel green and blue accents',
   },
   {
-    name: "Horizon",
-    type: "dark",
-    description: "A beautifully warm dark theme with pastel colors",
+    name: 'Horizon',
+    type: 'dark',
+    description: 'A beautifully warm dark theme with pastel colors',
   },
   {
-    name: "Ayu Light",
-    type: "light",
-    description: "A simple light theme with soft pastel colors",
+    name: 'Ayu Light',
+    type: 'light',
+    description: 'A simple light theme with soft pastel colors',
   },
   {
-    name: "Winter is Coming (Light)",
-    type: "light",
-    description: "A light theme with soft blue pastel colors",
+    name: 'Winter is Coming (Light)',
+    type: 'light',
+    description: 'A light theme with soft blue pastel colors',
   },
 ];
 
 /**
  * Get pastel themes by type
  */
-export const getPastelThemesByType = (
-  type: "dark" | "light"
-): ThemePreset[] => {
+export const getPastelThemesByType = (type: 'dark' | 'light'): ThemePreset[] => {
   return pastelThemes.filter((theme) => theme.type === type);
 };
 

@@ -1,6 +1,6 @@
 {
   "name": "vsw",
-  "version": "0.0.1",
+  "version": "0.0.0",
   "description": "VSCode theme switcher CLI tool",
   "main": "dist/index.js",
   "bin": {
@@ -18,8 +18,8 @@
     "format": "biome format --write .",
     "dev": "tsx src/index.ts",
     "start": "node dist/index.js",
-    "prepare": "npm run build",
-    "prepublishOnly": "npm run lint && npm run build"
+    "prepare": "pnpm run build",
+    "prepublishOnly": "pnpm run lint && pnpm run build"
   },
   "dependencies": {
     "chalk": "^5.3.0",
