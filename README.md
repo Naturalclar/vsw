@@ -2,6 +2,8 @@
 
 A command-line tool to easily switch VSCode color themes at the repository level.
 
+https://github.com/user-attachments/assets/216912e1-8399-4bd8-a138-b9b397ad5a4d
+
 ## Features
 
 - Switch between themes with a simple command
