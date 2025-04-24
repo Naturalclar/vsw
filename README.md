@@ -108,6 +108,10 @@ The CLI includes collections of beautiful color themes for VSCode. You can list 
 
 All themes come with custom color definitions that are applied directly to your repository's VSCode settings, so you don't need to install any theme extensions. These custom colors are applied using the `workbench.colorCustomizations` and `editor.tokenColorCustomizations` properties in your repository's `.vscode/settings.json` file, making them specific to each repository.
 
+#### Terminal Colors
+
+All themes now include terminal color customizations that match or complement the theme's color scheme. When you set a theme, the terminal background and foreground colors will automatically be updated to provide a consistent experience across your entire VSCode environment.
+
 ### Pastel Themes
 
 Soft, muted color themes with a gentle aesthetic. Use the `pastel` command to access these themes.
