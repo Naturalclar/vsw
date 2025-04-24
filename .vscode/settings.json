@@ -1,8 +1,8 @@
 {
-  "workbench.colorTheme": "Sky Blue",
+  "workbench.colorTheme": "Lavender Purple",
   "workbench.colorCustomizations": {
     "activityBar.background": "#ffffff",
-    "activityBar.foreground": "#0099cc",
+    "activityBar.foreground": "#9966cc",
     "editor.background": "#ffffff",
     "editor.foreground": "#333333",
     "editor.lineHighlightBackground": "#f5f5f5",
@@ -11,42 +11,63 @@
     "statusBar.background": "#f0f0f0",
     "tab.activeBackground": "#ffffff",
     "tab.inactiveBackground": "#f0f0f0",
-    "titleBar.activeBackground": "#f0f0f0"
+    "titleBar.activeBackground": "#f0f0f0",
+    "terminal.background": "#ffffff",
+    "terminal.foreground": "#9966cc"
   },
   "editor.tokenColorCustomizations": {
     "textMateRules": [
       {
-        "scope": ["comment", "punctuation.definition.comment"],
+        "scope": [
+          "comment",
+          "punctuation.definition.comment"
+        ],
         "settings": {
           "foreground": "#999999"
         }
       },
       {
-        "scope": ["string", "constant.other.symbol"],
+        "scope": [
+          "string",
+          "constant.other.symbol"
+        ],
         "settings": {
-          "foreground": "#0099cc"
+          "foreground": "#9966cc"
         }
       },
       {
-        "scope": ["constant.numeric", "constant.language"],
+        "scope": [
+          "constant.numeric",
+          "constant.language"
+        ],
         "settings": {
-          "foreground": "#33ccff"
+          "foreground": "#cc99ff"
         }
       },
       {
-        "scope": ["keyword", "storage.type", "storage.modifier"],
+        "scope": [
+          "keyword",
+          "storage.type",
+          "storage.modifier"
+        ],
         "settings": {
-          "foreground": "#0066cc"
+          "foreground": "#6633cc"
         }
       },
       {
-        "scope": ["entity.name.function", "support.function"],
+        "scope": [
+          "entity.name.function",
+          "support.function"
+        ],
         "settings": {
-          "foreground": "#3399cc"
+          "foreground": "#9966ff"
         }
       },
       {
-        "scope": ["variable", "support.variable"],
+        "scope": [
+          "variable",
+          "support.variable"
+        ],
         "settings": {
           "foreground": "#333333"
         }
