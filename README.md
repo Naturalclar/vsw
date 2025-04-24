@@ -114,6 +114,10 @@ All themes come with custom color definitions that are applied directly to your 
 
 All themes now include terminal color customizations that match or complement the theme's color scheme. When you set a theme, the terminal background and foreground colors will automatically be updated to provide a consistent experience across your entire VSCode environment.
 
+#### Input Background Colors
+
+All themes now include input background color customizations that match or complement the theme's color scheme. When you set a theme, the input field background color will automatically be updated to provide a consistent experience across your entire VSCode environment, ensuring that input fields blend seamlessly with the rest of the interface. This includes the Copilot chat input background, providing a cohesive look throughout your coding environment.
+
 ### Pastel Themes
 
 Soft, muted color themes with a gentle aesthetic. Use the `pastel` command to access these themes.

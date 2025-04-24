@@ -85,6 +85,9 @@ export const neonLightsColors: ThemeColors = {
     background: "#0a0a14", // Same as sideBar background
     foreground: "#00ffff", // Same as activityBar foreground for a neon effect
   },
+  input: {
+    background: "#0a0a14", // Same as sideBar background for consistency
+  },
   editor: {
     tokenColors: [
       {
@@ -147,6 +150,9 @@ export const synthwaveColors: ThemeColors = {
   terminal: {
     background: "#1e1727", // Same as sideBar background
     foreground: "#ff7edb", // Same as activityBar foreground for a synthwave effect
+  },
+  input: {
+    background: "#1e1727", // Same as sideBar background for consistency
   },
   editor: {
     tokenColors: [
@@ -211,6 +217,9 @@ export const cyberpunkColors: ThemeColors = {
     background: "#0d0819", // Same as sideBar background
     foreground: "#00ff9c", // Same as activityBar foreground for a cyberpunk effect
   },
+  input: {
+    background: "#0d0819", // Same as sideBar background for consistency
+  },
   editor: {
     tokenColors: [
       {
@@ -274,6 +283,9 @@ export const tropicalColors: ThemeColors = {
     background: "#ffffff", // Same as editor background
     foreground: "#ff4081", // Same as activityBar foreground for a tropical effect
   },
+  input: {
+    background: "#f0f0f0", // Same as sideBar background for consistency
+  },
   editor: {
     tokenColors: [
       {
@@ -336,6 +348,9 @@ export const candyColors: ThemeColors = {
   terminal: {
     background: "#ffffff", // Same as editor background
     foreground: "#ff4d4d", // Same as activityBar foreground for a candy effect
+  },
+  input: {
+    background: "#f0f0f0", // Same as sideBar background for consistency
   },
   editor: {
     tokenColors: [

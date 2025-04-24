@@ -127,6 +127,16 @@ export const settingsManager = {
         }
       }
 
+      // Add input background color if provided
+      if (themeColors.input?.background) {
+        colorCustomizations["input.background"] = themeColors.input.background;
+        // Add specific selectors for Copilot chat input
+        colorCustomizations["chat.editor.background"] =
+          themeColors.input.background;
+        colorCustomizations["editorWidget.background"] =
+          themeColors.input.background;
+      }
+
       settings["workbench.colorCustomizations"] = colorCustomizations;
 
       // Set editor token color customizations

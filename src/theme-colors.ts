@@ -20,6 +20,9 @@ export interface ThemeColors {
     background?: string;
     foreground?: string;
   };
+  input?: {
+    background?: string;
+  };
 }
 
 /**
@@ -42,6 +45,9 @@ export const pastelLightColors: ThemeColors = {
   terminal: {
     background: "#f8f9fa", // Same as editor background
     foreground: "#545c6b", // Same as editor foreground
+  },
+  input: {
+    background: "#f1f2f4", // Same as sideBar.background for consistency
   },
   editor: {
     tokenColors: [
@@ -106,6 +112,9 @@ export const pastelDarkColors: ThemeColors = {
     background: "#21252b", // Slightly darker than editor background for better contrast
     foreground: "#c5c8d1", // Same as editor foreground
   },
+  input: {
+    background: "#21252b", // Same as sideBar.background for consistency
+  },
   editor: {
     tokenColors: [
       {
@@ -168,6 +177,9 @@ export const pandaSyntaxColors: ThemeColors = {
   terminal: {
     background: "#242526", // Same as sideBar background
     foreground: "#e6e6e6", // Same as editor foreground
+  },
+  input: {
+    background: "#242526", // Same as sideBar.background for consistency
   },
   editor: {
     tokenColors: [
@@ -232,6 +244,9 @@ export const fairyFlossColors: ThemeColors = {
     background: "#4b4466", // Same as sideBar background
     foreground: "#f8f8f2", // Same as editor foreground
   },
+  input: {
+    background: "#4b4466", // Same as sideBar.background for consistency
+  },
   editor: {
     tokenColors: [
       {
@@ -294,6 +309,9 @@ export const rainglowPiggyLightColors: ThemeColors = {
   terminal: {
     background: "#f9f6f9", // Same as editor background
     foreground: "#7a6e71", // Same as editor foreground
+  },
+  input: {
+    background: "#f0edf0", // Same as sideBar.background for consistency
   },
   editor: {
     tokenColors: [
@@ -358,6 +376,9 @@ export const rainglowLavenderLightColors: ThemeColors = {
     background: "#f7f5fe", // Same as editor background
     foreground: "#7e7a8f", // Same as editor foreground
   },
+  input: {
+    background: "#eeedf5", // Same as sideBar.background for consistency
+  },
   editor: {
     tokenColors: [
       {
@@ -421,6 +442,9 @@ export const rainglowTonicColors: ThemeColors = {
     background: "#222222", // Same as sideBar background
     foreground: "#e3e2e0", // Same as editor foreground
   },
+  input: {
+    background: "#222222", // Same as sideBar.background for consistency
+  },
   editor: {
     tokenColors: [
       {
@@ -483,6 +507,9 @@ export const horizonColors: ThemeColors = {
   terminal: {
     background: "#16181f", // Same as sideBar background
     foreground: "#d5d8da", // Same as editor foreground
+  },
+  input: {
+    background: "#16181f", // Same as sideBar.background for consistency
   },
   editor: {
     tokenColors: [
