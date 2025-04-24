@@ -2,6 +2,8 @@ import { settingsManager } from "./settings";
 import { type Theme, configManager } from "./utils/config";
 import { logger } from "./utils/logger";
 import { getThemeColors } from "./theme-colors";
+import { getVividThemeColors } from "./vivid-themes";
+import { getColorThemeColors } from "./color-themes";
 
 /**
  * Theme manager
@@ -14,14 +16,25 @@ export const themeManager = {
     try {
       await settingsManager.setTheme(themeName);
 
-      // Check if this is a pastel theme with custom colors
-      const themeColors = getThemeColors(themeName);
-      if (themeColors) {
-        // Apply custom colors
-        await settingsManager.setThemeColors(themeColors);
-        logger.success(`Applied custom colors for "${themeName}"`);
+      // Check if this is a theme with custom colors
+      const pastelThemeColors = getThemeColors(themeName);
+      const vividThemeColors = getVividThemeColors(themeName);
+      const colorThemeColors = getColorThemeColors(themeName);
+
+      if (pastelThemeColors) {
+        // Apply pastel theme custom colors
+        await settingsManager.setThemeColors(pastelThemeColors);
+        logger.success(`Applied pastel custom colors for "${themeName}"`);
+      } else if (vividThemeColors) {
+        // Apply vivid theme custom colors
+        await settingsManager.setThemeColors(vividThemeColors);
+        logger.success(`Applied vivid custom colors for "${themeName}"`);
+      } else if (colorThemeColors) {
+        // Apply color theme custom colors
+        await settingsManager.setThemeColors(colorThemeColors);
+        logger.success(`Applied color custom colors for "${themeName}"`);
       } else {
-        // Clear any custom colors if this is not a pastel theme
+        // Clear any custom colors if this is not a theme with custom colors
         await settingsManager.clearThemeColors();
       }
     } catch (error) {

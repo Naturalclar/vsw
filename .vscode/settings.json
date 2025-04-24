@@ -1,17 +1,17 @@
 {
-  "workbench.colorTheme": "Fairy Floss",
+  "workbench.colorTheme": "Sky Blue",
   "workbench.colorCustomizations": {
-    "activityBar.background": "#5a5475",
-    "activityBar.foreground": "#f8f8f2",
-    "editor.background": "#5a5475",
-    "editor.foreground": "#f8f8f2",
-    "editor.lineHighlightBackground": "#6a6483",
-    "editorGroupHeader.tabsBackground": "#4b4466",
-    "sideBar.background": "#4b4466",
-    "statusBar.background": "#4b4466",
-    "tab.activeBackground": "#5a5475",
-    "tab.inactiveBackground": "#4b4466",
-    "titleBar.activeBackground": "#4b4466"
+    "activityBar.background": "#ffffff",
+    "activityBar.foreground": "#0099cc",
+    "editor.background": "#ffffff",
+    "editor.foreground": "#333333",
+    "editor.lineHighlightBackground": "#f5f5f5",
+    "editorGroupHeader.tabsBackground": "#f0f0f0",
+    "sideBar.background": "#f0f0f0",
+    "statusBar.background": "#f0f0f0",
+    "tab.activeBackground": "#ffffff",
+    "tab.inactiveBackground": "#f0f0f0",
+    "titleBar.activeBackground": "#f0f0f0"
   },
   "editor.tokenColorCustomizations": {
     "textMateRules": [
@@ -21,7 +21,7 @@
           "punctuation.definition.comment"
         ],
         "settings": {
-          "foreground": "#e6c000"
+          "foreground": "#999999"
         }
       },
       {
@@ -30,7 +30,7 @@
           "constant.other.symbol"
         ],
         "settings": {
-          "foreground": "#ffea00"
+          "foreground": "#0099cc"
         }
       },
       {
@@ -39,7 +39,7 @@
           "constant.language"
         ],
         "settings": {
-          "foreground": "#c5a3ff"
+          "foreground": "#33ccff"
         }
       },
       {
@@ -49,7 +49,7 @@
           "storage.modifier"
         ],
         "settings": {
-          "foreground": "#ff857f"
+          "foreground": "#0066cc"
         }
       },
       {
@@ -58,7 +58,7 @@
           "support.function"
         ],
         "settings": {
-          "foreground": "#fff352"
+          "foreground": "#3399cc"
         }
       },
       {
@@ -67,7 +67,7 @@
           "support.variable"
         ],
         "settings": {
-          "foreground": "#f8f8f2"
+          "foreground": "#333333"
         }
       }
     ]

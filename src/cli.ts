@@ -9,6 +9,18 @@ import {
   getPastelThemesByType,
   type ThemePreset,
 } from "./theme-presets";
+import {
+  getAllVividThemes,
+  getVividThemeByName,
+  getVividThemesByType,
+  type VividTheme,
+} from "./vivid-themes";
+import {
+  getAllColorThemes,
+  getColorThemeByName,
+  getColorThemesByType,
+  type ColorTheme,
+} from "./color-themes";
 
 /**
  * Create CLI program
@@ -289,6 +301,154 @@ export const createCLI = (): Command => {
         }
       } catch (error) {
         logger.error(`Failed to handle pastel themes: ${error}`);
+      }
+    });
+
+  // Vivid themes command
+  program
+    .command("vivid")
+    .description("Vivid theme options")
+    .option("-l, --list", "List all vivid themes")
+    .option("-d, --dark", "List dark vivid themes")
+    .option("-i, --light", "List light vivid themes")
+    .option("-s, --set", "Set a vivid theme")
+    .action(async (options) => {
+      try {
+        // List vivid themes
+        if (options.list) {
+          const themes = getAllVividThemes();
+          logger.info("Available vivid themes:");
+
+          for (const theme of themes) {
+            logger.theme(
+              `${theme.name} (${theme.type}) - ${theme.description}`
+            );
+          }
+          return;
+        }
+
+        // List dark vivid themes
+        if (options.dark) {
+          const themes = getVividThemesByType("dark");
+          logger.info("Dark vivid themes:");
+
+          for (const theme of themes) {
+            logger.theme(`${theme.name} - ${theme.description}`);
+          }
+          return;
+        }
+
+        // List light vivid themes
+        if (options.light) {
+          const themes = getVividThemesByType("light");
+          logger.info("Light vivid themes:");
+
+          for (const theme of themes) {
+            logger.theme(`${theme.name} - ${theme.description}`);
+          }
+          return;
+        }
+
+        // Set a vivid theme (default behavior or when --set is used)
+        if (options.set || (!options.list && !options.dark && !options.light)) {
+          const themes = getAllVividThemes();
+
+          const { selectedTheme } = await inquirer.prompt([
+            {
+              type: "list",
+              name: "selectedTheme",
+              message: "Select a vivid theme:",
+              choices: themes.map((theme) => ({
+                name: `${theme.name} (${theme.type}) - ${theme.description}`,
+                value: theme.name,
+              })),
+            },
+          ]);
+
+          await themeManager.setTheme(selectedTheme);
+
+          // Add to favorites if not already there
+          const vividTheme = getVividThemeByName(selectedTheme);
+          if (vividTheme) {
+            await themeManager.addFavoriteTheme(selectedTheme, vividTheme.type);
+          }
+        }
+      } catch (error) {
+        logger.error(`Failed to handle vivid themes: ${error}`);
+      }
+    });
+
+  // Color themes command
+  program
+    .command("color")
+    .description("Color theme options")
+    .option("-l, --list", "List all color themes")
+    .option("-d, --dark", "List dark color themes")
+    .option("-i, --light", "List light color themes")
+    .option("-s, --set", "Set a color theme")
+    .action(async (options) => {
+      try {
+        // List color themes
+        if (options.list) {
+          const themes = getAllColorThemes();
+          logger.info("Available color themes:");
+
+          for (const theme of themes) {
+            logger.theme(
+              `${theme.name} (${theme.type}) - ${theme.description}`
+            );
+          }
+          return;
+        }
+
+        // List dark color themes
+        if (options.dark) {
+          const themes = getColorThemesByType("dark");
+          logger.info("Dark color themes:");
+
+          for (const theme of themes) {
+            logger.theme(`${theme.name} - ${theme.description}`);
+          }
+          return;
+        }
+
+        // List light color themes
+        if (options.light) {
+          const themes = getColorThemesByType("light");
+          logger.info("Light color themes:");
+
+          for (const theme of themes) {
+            logger.theme(`${theme.name} - ${theme.description}`);
+          }
+          return;
+        }
+
+        // Set a color theme (default behavior or when --set is used)
+        if (options.set || (!options.list && !options.dark && !options.light)) {
+          const themes = getAllColorThemes();
+
+          const { selectedTheme } = await inquirer.prompt([
+            {
+              type: "list",
+              name: "selectedTheme",
+              message: "Select a color theme:",
+              choices: themes.map((theme) => ({
+                name: `${theme.name} (${theme.type}) - ${theme.description}`,
+                value: theme.name,
+              })),
+            },
+          ]);
+
+          await themeManager.setTheme(selectedTheme);
+
+          // Add to favorites if not already there
+          const colorTheme = getColorThemeByName(selectedTheme);
+          if (colorTheme) {
+            await themeManager.addFavoriteTheme(selectedTheme, colorTheme.type);
+          }
+        }
+      } catch (error) {
+        logger.error(`Failed to handle color themes: ${error}`);
       }
     });
 
