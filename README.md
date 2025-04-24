@@ -62,13 +62,46 @@ vsw dark
 
 # Switch to a light theme (from favorites)
 vsw light
+
+# Set a pastel theme (interactive selection)
+vsw pastel
+
+# List available pastel themes
+vsw pastel --list
+
+# List dark pastel themes
+vsw pastel --dark
+
+# List light pastel themes
+vsw pastel --light
 ```
+
+## Pastel Themes
+
+The CLI includes a collection of beautiful pastel color themes for VSCode. You can list and set these themes using the `pastel` command. When you set a pastel theme, it's automatically added to your favorites for quick access.
+
+### Custom Colors
+
+All pastel themes come with custom color definitions that are applied directly to your repository's VSCode settings, so you don't need to install any theme extensions. These custom colors are applied using the `workbench.colorCustomizations` and `editor.tokenColorCustomizations` properties in your repository's `.vscode/settings.json` file, making them specific to each repository.
+
+Available pastel themes:
+
+- **Pastel Light** - A light theme with soft pastel colors
+- **Pastel Dark** - A dark theme with soft pastel colors
+- **Panda Syntax** - A superminimal dark syntax theme with pastel colors
+- **Fairy Floss** - A pastel-colored theme with a magical feel
+- **Rainglow - Piggy Light** - A light pastel theme with pink accents
+- **Rainglow - Lavender Light** - A light pastel theme with lavender accents
+- **Rainglow - Tonic** - A dark theme with pastel green and blue accents
+- **Horizon** - A beautifully warm dark theme with pastel colors
+- **Ayu Light** - A simple light theme with soft pastel colors
+- **Winter is Coming (Light)** - A light theme with soft blue pastel colors
 
 ## How It Works
 
-VSW modifies the `.vscode/settings.json` file in your current repository to set the `workbench.colorTheme` property. This allows you to have different themes for different projects.
+VSW modifies the `.vscode/settings.json` file in your current repository to set the `workbench.colorTheme` property. For pastel themes with custom colors, it also sets the `workbench.colorCustomizations` and `editor.tokenColorCustomizations` properties in the same file. This allows you to have different themes and color customizations for different projects.
 
-Favorite themes are stored in a configuration file in your home directory (`~/.vsw/config.json`).
+Favorite themes are stored in a configuration file in your home directory (`~/.vsw/config.json`), but the actual theme settings and color customizations are always repository-specific.
 
 ## Development
 
