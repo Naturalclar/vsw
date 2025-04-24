@@ -1,7 +1,7 @@
-import { Command } from 'commander';
-import inquirer from 'inquirer';
 import { readFileSync } from 'fs';
 import { join } from 'path';
+import { Command } from 'commander';
+import inquirer from 'inquirer';
 import {
   type ColorTheme,
   getAllColorThemes,
