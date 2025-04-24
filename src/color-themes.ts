@@ -120,6 +120,9 @@ export const rubyRedColors: ThemeColors = {
     background: "#150000", // Same as sideBar background
     foreground: "#ff3333", // Same as activityBar foreground for a ruby red effect
   },
+  input: {
+    background: "#150000", // Same as sideBar background for consistency
+  },
   editor: {
     tokenColors: [
       {
@@ -182,6 +185,9 @@ export const emeraldGreenColors: ThemeColors = {
   terminal: {
     background: "#001500", // Same as sideBar background
     foreground: "#33ff33", // Same as activityBar foreground for an emerald green effect
+  },
+  input: {
+    background: "#001500", // Same as sideBar background for consistency
   },
   editor: {
     tokenColors: [
@@ -246,6 +252,9 @@ export const sapphireBlueColors: ThemeColors = {
     background: "#000015", // Same as sideBar background
     foreground: "#3333ff", // Same as activityBar foreground for a sapphire blue effect
   },
+  input: {
+    background: "#000015", // Same as sideBar background for consistency
+  },
   editor: {
     tokenColors: [
       {
@@ -308,6 +317,9 @@ export const royalPurpleColors: ThemeColors = {
   terminal: {
     background: "#150015", // Same as sideBar background
     foreground: "#cc33cc", // Same as activityBar foreground for a royal purple effect
+  },
+  input: {
+    background: "#150015", // Same as sideBar background for consistency
   },
   editor: {
     tokenColors: [
@@ -372,6 +384,9 @@ export const sunsetOrangeColors: ThemeColors = {
     background: "#150b00", // Same as sideBar background
     foreground: "#ff8533", // Same as activityBar foreground for a sunset orange effect
   },
+  input: {
+    background: "#150b00", // Same as sideBar background for consistency
+  },
   editor: {
     tokenColors: [
       {
@@ -434,6 +449,9 @@ export const chocolateBrownColors: ThemeColors = {
   terminal: {
     background: "#150b00", // Same as sideBar background
     foreground: "#cc8033", // Same as activityBar foreground for a chocolate brown effect
+  },
+  input: {
+    background: "#150b00", // Same as sideBar background for consistency
   },
   editor: {
     tokenColors: [
@@ -498,6 +516,9 @@ export const cherryRedColors: ThemeColors = {
     background: "#ffffff", // Same as editor background
     foreground: "#cc0000", // Same as activityBar foreground for a cherry red effect
   },
+  input: {
+    background: "#f0f0f0", // Same as sideBar background for consistency
+  },
   editor: {
     tokenColors: [
       {
@@ -560,6 +581,9 @@ export const mintGreenColors: ThemeColors = {
   terminal: {
     background: "#ffffff", // Same as editor background
     foreground: "#00cc66", // Same as activityBar foreground for a mint green effect
+  },
+  input: {
+    background: "#f0f0f0", // Same as sideBar background for consistency
   },
   editor: {
     tokenColors: [
@@ -624,6 +648,9 @@ export const skyBlueColors: ThemeColors = {
     background: "#ffffff", // Same as editor background
     foreground: "#0099cc", // Same as activityBar foreground for a sky blue effect
   },
+  input: {
+    background: "#f0f0f0", // Same as sideBar background for consistency
+  },
   editor: {
     tokenColors: [
       {
@@ -686,6 +713,9 @@ export const lavenderPurpleColors: ThemeColors = {
   terminal: {
     background: "#ffffff", // Same as editor background
     foreground: "#9966cc", // Same as activityBar foreground for a lavender purple effect
+  },
+  input: {
+    background: "#f0f0f0", // Same as sideBar background for consistency
   },
   editor: {
     tokenColors: [
@@ -750,6 +780,9 @@ export const peachOrangeColors: ThemeColors = {
     background: "#ffffff", // Same as editor background
     foreground: "#ff9933", // Same as activityBar foreground for a peach orange effect
   },
+  input: {
+    background: "#f0f0f0", // Same as sideBar background for consistency
+  },
   editor: {
     tokenColors: [
       {
@@ -812,6 +845,9 @@ export const caramelBrownColors: ThemeColors = {
   terminal: {
     background: "#ffffff", // Same as editor background
     foreground: "#996633", // Same as activityBar foreground for a caramel brown effect
+  },
+  input: {
+    background: "#f0f0f0", // Same as sideBar background for consistency
   },
   editor: {
     tokenColors: [
