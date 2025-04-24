@@ -1,5 +1,7 @@
 import { Command } from 'commander';
 import inquirer from 'inquirer';
+import { readFileSync } from 'fs';
+import { join } from 'path';
 import {
   type ColorTheme,
   getAllColorThemes,
@@ -28,10 +30,15 @@ import {
 export const createCLI = (): Command => {
   const program = new Command();
 
+  // Get version from package.json
+  const packageJsonPath = join(__dirname, '..', 'package.json');
+  const packageJson = JSON.parse(readFileSync(packageJsonPath, 'utf8'));
+  const version = packageJson.version;
+
   program
     .name('vsw')
     .description('VSCode theme switcher')
-    .version('0.0.0')
+    .version(version)
     .helpOption('-h, --help', 'Display help for command');
 
   // Set theme command
