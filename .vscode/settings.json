@@ -21,56 +21,37 @@
   "editor.tokenColorCustomizations": {
     "textMateRules": [
       {
-        "scope": [
-          "comment",
-          "punctuation.definition.comment"
-        ],
+        "scope": ["comment", "punctuation.definition.comment"],
         "settings": {
           "foreground": "#664444"
         }
       },
       {
-        "scope": [
-          "string",
-          "constant.other.symbol"
-        ],
+        "scope": ["string", "constant.other.symbol"],
         "settings": {
           "foreground": "#ff6666"
         }
       },
       {
-        "scope": [
-          "constant.numeric",
-          "constant.language"
-        ],
+        "scope": ["constant.numeric", "constant.language"],
         "settings": {
           "foreground": "#ff9999"
         }
       },
       {
-        "scope": [
-          "keyword",
-          "storage.type",
-          "storage.modifier"
-        ],
+        "scope": ["keyword", "storage.type", "storage.modifier"],
         "settings": {
           "foreground": "#ff3333"
         }
       },
       {
-        "scope": [
-          "entity.name.function",
-          "support.function"
-        ],
+        "scope": ["entity.name.function", "support.function"],
         "settings": {
           "foreground": "#ffcccc"
         }
       },
       {
-        "scope": [
-          "variable",
-          "support.variable"
-        ],
+        "scope": ["variable", "support.variable"],
         "settings": {
           "foreground": "#f0f0f0"
         }
