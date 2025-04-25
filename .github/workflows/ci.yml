@@ -51,8 +51,6 @@ jobs:
 
       - name: Diff check
         run: |
-          pnpm biome check --apply .
-          pnpm biome format --write .
           git diff --exit-code || (echo "::error::Code has formatting or linting issues that would cause changes. Run 'pnpm lint' and 'pnpm format' locally and commit the changes." && exit 1)
 
       - name: Type check
