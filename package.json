@@ -16,7 +16,6 @@
     "type-check": "tsc -noEmit",
     "lint": "biome check .",
     "format": "biome format --write .",
-    "format-check": "biome format --check .",
     "dev": "tsx src/index.ts",
     "start": "node dist/index.js",
     "prepare": "pnpm run build",

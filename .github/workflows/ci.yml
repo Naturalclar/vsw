@@ -18,7 +18,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version: "20"
       
       - name: Setup pnpm
         uses: pnpm/action-setup@v3
@@ -48,6 +48,12 @@ jobs:
       
       - name: Format check
         run: pnpm format-check
+      
+      - name: Diff check
+        run: |
+          pnpm biome check --apply .
+          pnpm biome format --write .
+          git diff --exit-code || (echo "::error::Code has formatting or linting issues that would cause changes. Run 'pnpm lint' and 'pnpm format' locally and commit the changes." && exit 1)
       
       - name: Type check
         run: pnpm type-check

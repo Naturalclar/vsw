@@ -224,6 +224,7 @@ The CI workflow includes:
 
 - **Linting**: Checks code for potential errors and enforces coding standards using Biome
 - **Format checking**: Ensures code follows consistent formatting rules
+- **Diff checking**: Fails the CI if there are formatting or linting issues that would cause changes to the code
 - **Type checking**: Verifies TypeScript types are correct
 - **Building**: Ensures the project builds successfully
 
