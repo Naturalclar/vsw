@@ -8,6 +8,7 @@ import {
   getColorThemeByName,
   getColorThemesByType,
 } from './color-themes';
+import { settingsManager } from './settings';
 import { themeManager } from './theme-manager';
 import {
   type ThemePreset,
@@ -441,6 +442,10 @@ export const createCLI = (): Command => {
           const colorTheme = getColorThemeByName(selectedTheme);
           if (colorTheme) {
             await themeManager.addFavoriteTheme(selectedTheme, colorTheme.type);
+
+            // Set the theme type (light or dark) based on the selected theme
+            logger.info(`Setting ${colorTheme.type} color theme`);
+            await settingsManager.setThemeType(colorTheme.type);
           }
         }
       } catch (error) {

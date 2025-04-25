@@ -133,6 +133,22 @@ export const settingsManager = {
         colorCustomizations['editorWidget.background'] = themeColors.input.background;
       }
 
+      // Add input foreground color if provided
+      if (themeColors.input?.foreground) {
+        colorCustomizations['input.foreground'] = themeColors.input.foreground;
+        colorCustomizations['chat.editor.foreground'] = themeColors.input.foreground;
+        colorCustomizations['editorWidget.foreground'] = themeColors.input.foreground;
+      }
+
+      // Add search input text color if provided
+      if (themeColors.search?.inputText) {
+        colorCustomizations['searchEditor.findMatchBackground'] = themeColors.search.inputText;
+        colorCustomizations['editor.findMatchBackground'] = `${themeColors.search.inputText}40`; // 25% opacity
+        colorCustomizations['editor.findMatchHighlightBackground'] =
+          `${themeColors.search.inputText}30`; // 19% opacity
+        colorCustomizations['search.matchBackground'] = `${themeColors.search.inputText}40`; // 25% opacity
+      }
+
       settings['workbench.colorCustomizations'] = colorCustomizations;
 
       // Set editor token color customizations
@@ -163,6 +179,30 @@ export const settingsManager = {
       logger.success('Theme colors cleared');
     } catch (error) {
       logger.error(`Failed to clear theme colors: ${error}`);
+      throw error;
+    }
+  },
+
+  /**
+   * Set theme type (light or dark)
+   * This changes the workbench.colorTheme to either Default Dark+ or Default Light+
+   * based on the theme type
+   */
+  setThemeType: async (type: 'light' | 'dark'): Promise<void> => {
+    try {
+      const settings = await settingsManager.getSettings();
+
+      // Set the workbench.colorTheme to the default theme based on type
+      if (type === 'light') {
+        settings['workbench.colorTheme'] = 'Default Light+';
+      } else {
+        settings['workbench.colorTheme'] = 'Default Dark+';
+      }
+
+      await settingsManager.saveSettings(settings);
+      logger.success(`Theme type set to "${type}" (${settings['workbench.colorTheme']})`);
+    } catch (error) {
+      logger.error(`Failed to set theme type: ${error}`);
       throw error;
     }
   },

@@ -1,5 +1,5 @@
 {
-  "workbench.colorTheme": "Cherry Red",
+  "workbench.colorTheme": "Default Light+",
   "workbench.colorCustomizations": {
     "activityBar.background": "#ffffff",
     "activityBar.foreground": "#cc0000",
@@ -21,60 +21,42 @@
   "editor.tokenColorCustomizations": {
     "textMateRules": [
       {
-        "scope": [
-          "comment",
-          "punctuation.definition.comment"
-        ],
+        "scope": ["comment", "punctuation.definition.comment"],
         "settings": {
           "foreground": "#999999"
         }
       },
       {
-        "scope": [
-          "string",
-          "constant.other.symbol"
-        ],
+        "scope": ["string", "constant.other.symbol"],
         "settings": {
           "foreground": "#cc0000"
         }
       },
       {
-        "scope": [
-          "constant.numeric",
-          "constant.language"
-        ],
+        "scope": ["constant.numeric", "constant.language"],
         "settings": {
           "foreground": "#ff3333"
         }
       },
       {
-        "scope": [
-          "keyword",
-          "storage.type",
-          "storage.modifier"
-        ],
+        "scope": ["keyword", "storage.type", "storage.modifier"],
         "settings": {
           "foreground": "#990000"
         }
       },
       {
-        "scope": [
-          "entity.name.function",
-          "support.function"
-        ],
+        "scope": ["entity.name.function", "support.function"],
         "settings": {
           "foreground": "#cc3333"
         }
       },
       {
-        "scope": [
-          "variable",
-          "support.variable"
-        ],
+        "scope": ["variable", "support.variable"],
         "settings": {
           "foreground": "#333333"
         }
       }
     ]
-  }
+  },
+  "workbench.preferredDarkColorTheme": "Emerald Green"
 }

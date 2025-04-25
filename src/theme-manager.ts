@@ -1,10 +1,10 @@
-import { getColorThemeColors } from "./color-themes";
-import { enhanceDarkThemeContrast } from "./theme-enhancer";
-import { settingsManager } from "./settings";
-import { getThemeColors } from "./theme-colors";
-import { type Theme, configManager } from "./utils/config";
-import { logger } from "./utils/logger";
-import { getVividThemeColors } from "./vivid-themes";
+import { getColorThemeColors } from './color-themes';
+import { settingsManager } from './settings';
+import { getThemeColors } from './theme-colors';
+import { enhanceDarkThemeContrast } from './theme-enhancer';
+import { type Theme, configManager } from './utils/config';
+import { logger } from './utils/logger';
+import { getVividThemeColors } from './vivid-themes';
 
 /**
  * Theme manager
@@ -28,27 +28,21 @@ export const themeManager = {
       if (pastelThemeColors) {
         // Apply pastel theme custom colors with enhanced contrast for dark themes
         const themeColors =
-          themeType === "dark"
-            ? enhanceDarkThemeContrast(pastelThemeColors)
-            : pastelThemeColors;
+          themeType === 'dark' ? enhanceDarkThemeContrast(pastelThemeColors) : pastelThemeColors;
 
         await settingsManager.setThemeColors(themeColors);
         logger.success(`Applied pastel custom colors for "${themeName}"`);
       } else if (vividThemeColors) {
         // Apply vivid theme custom colors with enhanced contrast for dark themes
         const themeColors =
-          themeType === "dark"
-            ? enhanceDarkThemeContrast(vividThemeColors)
-            : vividThemeColors;
+          themeType === 'dark' ? enhanceDarkThemeContrast(vividThemeColors) : vividThemeColors;
 
         await settingsManager.setThemeColors(themeColors);
         logger.success(`Applied vivid custom colors for "${themeName}"`);
       } else if (colorThemeColors) {
         // Apply color theme custom colors with enhanced contrast for dark themes
         const themeColors =
-          themeType === "dark"
-            ? enhanceDarkThemeContrast(colorThemeColors)
-            : colorThemeColors;
+          themeType === 'dark' ? enhanceDarkThemeContrast(colorThemeColors) : colorThemeColors;
 
         await settingsManager.setThemeColors(themeColors);
         logger.success(`Applied color custom colors for "${themeName}"`);
@@ -77,10 +71,7 @@ export const themeManager = {
   /**
    * Add theme to favorites
    */
-  addFavoriteTheme: async (
-    themeName: string,
-    type: "dark" | "light"
-  ): Promise<void> => {
+  addFavoriteTheme: async (themeName: string, type: 'dark' | 'light'): Promise<void> => {
     try {
       await configManager.addFavoriteTheme(themeName, type);
       logger.success(`Added "${themeName}" to favorites as ${type} theme`);
@@ -118,7 +109,7 @@ export const themeManager = {
   /**
    * Get favorite themes by type
    */
-  getFavoriteThemesByType: async (type: "dark" | "light"): Promise<Theme[]> => {
+  getFavoriteThemesByType: async (type: 'dark' | 'light'): Promise<Theme[]> => {
     try {
       const themes = await configManager.getFavoriteThemes();
       return themes.filter((theme) => theme.type === type);
@@ -131,7 +122,7 @@ export const themeManager = {
   /**
    * Set theme by type
    */
-  setThemeByType: async (type: "dark" | "light"): Promise<void> => {
+  setThemeByType: async (type: 'dark' | 'light'): Promise<void> => {
     try {
       // Try to get the last used theme of this type
       const lastUsed = await configManager.getLastUsedTheme(type);
@@ -160,20 +151,20 @@ export const themeManager = {
    * Set dark theme
    */
   setDarkTheme: async (): Promise<void> => {
-    await themeManager.setThemeByType("dark");
+    await themeManager.setThemeByType('dark');
   },
 
   /**
    * Set light theme
    */
   setLightTheme: async (): Promise<void> => {
-    await themeManager.setThemeByType("light");
+    await themeManager.setThemeByType('light');
   },
 
   /**
    * Get theme type (dark or light) by name
    */
-  getThemeType: async (themeName: string): Promise<"dark" | "light"> => {
+  getThemeType: async (themeName: string): Promise<'dark' | 'light'> => {
     try {
       // Check in color themes
       const colorTheme = getColorThemeByName(themeName);
@@ -189,14 +180,14 @@ export const themeManager = {
 
       // Check in pastel themes (assuming there's a function to get theme by name)
       // If not found, default to dark
-      return "dark";
+      return 'dark';
     } catch (error) {
       logger.error(`Failed to determine theme type: ${error}`);
-      return "dark"; // Default to dark if there's an error
+      return 'dark'; // Default to dark if there's an error
     }
   },
 };
 
 // Import these functions at the top of the file
-import { getColorThemeByName } from "./color-themes";
-import { getVividThemeByName } from "./vivid-themes";
+import { getColorThemeByName } from './color-themes';
+import { getVividThemeByName } from './vivid-themes';

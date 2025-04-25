@@ -7,7 +7,7 @@
  */
 export function hexToRgb(hex: string): { r: number; g: number; b: number } {
   // Remove # if present
-  const hexValue = hex.replace(/^#/, "");
+  const hexValue = hex.replace(/^#/, '');
 
   // Parse hex values
   let r: number;
@@ -39,9 +39,9 @@ export function rgbToHex(r: number, g: number, b: number): string {
   const bClamped = Math.max(0, Math.min(255, Math.round(b)));
 
   // Convert to hex
-  return `#${rClamped.toString(16).padStart(2, "0")}${gClamped
+  return `#${rClamped.toString(16).padStart(2, '0')}${gClamped
     .toString(16)
-    .padStart(2, "0")}${bClamped.toString(16).padStart(2, "0")}`;
+    .padStart(2, '0')}${bClamped.toString(16).padStart(2, '0')}`;
 }
 
 /**
@@ -56,12 +56,9 @@ export function getLuminance(color: string): number {
   const gsrgb = g / 255;
   const bsrgb = b / 255;
 
-  const r1 =
-    rsrgb <= 0.03928 ? rsrgb / 12.92 : ((rsrgb + 0.055) / 1.055) ** 2.4;
-  const g1 =
-    gsrgb <= 0.03928 ? gsrgb / 12.92 : ((gsrgb + 0.055) / 1.055) ** 2.4;
-  const b1 =
-    bsrgb <= 0.03928 ? bsrgb / 12.92 : ((bsrgb + 0.055) / 1.055) ** 2.4;
+  const r1 = rsrgb <= 0.03928 ? rsrgb / 12.92 : ((rsrgb + 0.055) / 1.055) ** 2.4;
+  const g1 = gsrgb <= 0.03928 ? gsrgb / 12.92 : ((gsrgb + 0.055) / 1.055) ** 2.4;
+  const b1 = bsrgb <= 0.03928 ? bsrgb / 12.92 : ((bsrgb + 0.055) / 1.055) ** 2.4;
 
   return 0.2126 * r1 + 0.7152 * g1 + 0.0722 * b1;
 }
@@ -70,10 +67,7 @@ export function getLuminance(color: string): number {
  * Calculate contrast ratio between two colors
  * Based on WCAG 2.0 formula: https://www.w3.org/TR/WCAG20-TECHS/G17.html
  */
-export function getContrastRatio(
-  foreground: string,
-  background: string
-): number {
+export function getContrastRatio(foreground: string, background: string): number {
   const foregroundLuminance = getLuminance(foreground);
   const backgroundLuminance = getLuminance(background);
 
@@ -161,10 +155,7 @@ export function ensureMinimumContrast(
 /**
  * Adjust comment colors for a dark theme to ensure they have sufficient contrast
  */
-export function adjustDarkThemeCommentColor(
-  commentColor: string,
-  backgroundColor: string
-): string {
+export function adjustDarkThemeCommentColor(commentColor: string, backgroundColor: string): string {
   // For dark themes, we want a higher minimum contrast for comments
   // WCAG AA requires 4.5:1 for normal text, but we'll aim for 5:1 for better readability
   return ensureMinimumContrast(commentColor, backgroundColor, 5.0);
