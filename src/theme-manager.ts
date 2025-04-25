@@ -1,6 +1,7 @@
 import { getColorThemeColors } from './color-themes';
 import { settingsManager } from './settings';
 import { getThemeColors } from './theme-colors';
+import { enhanceDarkThemeContrast } from './theme-enhancer';
 import { type Theme, configManager } from './utils/config';
 import { logger } from './utils/logger';
 import { getVividThemeColors } from './vivid-themes';
@@ -21,17 +22,29 @@ export const themeManager = {
       const vividThemeColors = getVividThemeColors(themeName);
       const colorThemeColors = getColorThemeColors(themeName);
 
+      // Get the theme type (dark or light)
+      const themeType = await themeManager.getThemeType(themeName);
+
       if (pastelThemeColors) {
-        // Apply pastel theme custom colors
-        await settingsManager.setThemeColors(pastelThemeColors);
+        // Apply pastel theme custom colors with enhanced contrast for dark themes
+        const themeColors =
+          themeType === 'dark' ? enhanceDarkThemeContrast(pastelThemeColors) : pastelThemeColors;
+
+        await settingsManager.setThemeColors(themeColors);
         logger.success(`Applied pastel custom colors for "${themeName}"`);
       } else if (vividThemeColors) {
-        // Apply vivid theme custom colors
-        await settingsManager.setThemeColors(vividThemeColors);
+        // Apply vivid theme custom colors with enhanced contrast for dark themes
+        const themeColors =
+          themeType === 'dark' ? enhanceDarkThemeContrast(vividThemeColors) : vividThemeColors;
+
+        await settingsManager.setThemeColors(themeColors);
         logger.success(`Applied vivid custom colors for "${themeName}"`);
       } else if (colorThemeColors) {
-        // Apply color theme custom colors
-        await settingsManager.setThemeColors(colorThemeColors);
+        // Apply color theme custom colors with enhanced contrast for dark themes
+        const themeColors =
+          themeType === 'dark' ? enhanceDarkThemeContrast(colorThemeColors) : colorThemeColors;
+
+        await settingsManager.setThemeColors(themeColors);
         logger.success(`Applied color custom colors for "${themeName}"`);
       } else {
         // Clear any custom colors if this is not a theme with custom colors
@@ -147,4 +160,34 @@ export const themeManager = {
   setLightTheme: async (): Promise<void> => {
     await themeManager.setThemeByType('light');
   },
+
+  /**
+   * Get theme type (dark or light) by name
+   */
+  getThemeType: async (themeName: string): Promise<'dark' | 'light'> => {
+    try {
+      // Check in color themes
+      const colorTheme = getColorThemeByName(themeName);
+      if (colorTheme) {
+        return colorTheme.type;
+      }
+
+      // Check in vivid themes
+      const vividTheme = getVividThemeByName(themeName);
+      if (vividTheme) {
+        return vividTheme.type;
+      }
+
+      // Check in pastel themes (assuming there's a function to get theme by name)
+      // If not found, default to dark
+      return 'dark';
+    } catch (error) {
+      logger.error(`Failed to determine theme type: ${error}`);
+      return 'dark'; // Default to dark if there's an error
+    }
+  },
 };
+
+// Import these functions at the top of the file
+import { getColorThemeByName } from './color-themes';
+import { getVividThemeByName } from './vivid-themes';

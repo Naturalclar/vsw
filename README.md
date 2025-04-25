@@ -118,6 +118,18 @@ All themes now include terminal color customizations that match or complement th
 
 All themes now include input background color customizations that match or complement the theme's color scheme. When you set a theme, the input field background color will automatically be updated to provide a consistent experience across your entire VSCode environment, ensuring that input fields blend seamlessly with the rest of the interface. This includes the Copilot chat input background, providing a cohesive look throughout your coding environment.
 
+#### Input Text Colors
+
+All themes now include input text color customizations that ensure high contrast with the input background. This makes text in input fields, including the search box and Copilot chat, easier to read and more accessible.
+
+#### Search Highlighting
+
+Search results are now highlighted using colors that match the theme's color scheme, providing a more cohesive and visually pleasing experience when searching through code. The search highlight colors are derived from the theme's input text color, ensuring good contrast and visibility.
+
+#### Enhanced Contrast for Subtexts in Dark Mode
+
+All dark themes now feature enhanced contrast for subtexts (primarily comments) to improve readability. The contrast enhancement automatically adjusts comment colors to ensure they meet WCAG AA accessibility standards (minimum 4.5:1 contrast ratio), making code comments easier to read without straining your eyes. This is particularly beneficial for users who rely heavily on comments for code understanding or who have visual impairments.
+
 ### Pastel Themes
 
 Soft, muted color themes with a gentle aesthetic. Use the `pastel` command to access these themes.

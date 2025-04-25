@@ -22,6 +22,10 @@ export interface ThemeColors {
   };
   input?: {
     background?: string;
+    foreground?: string;
+  };
+  search?: {
+    inputText?: string;
   };
 }
 

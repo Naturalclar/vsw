@@ -19,7 +19,8 @@
     "dev": "tsx src/index.ts",
     "start": "node dist/index.js",
     "prepare": "pnpm run build",
-    "prepublishOnly": "pnpm run lint && pnpm run build"
+    "prepublishOnly": "pnpm run lint && pnpm run build",
+    "test-contrast": "tsx src/test-contrast.ts"
   },
   "dependencies": {
     "chalk": "^5.3.0",
