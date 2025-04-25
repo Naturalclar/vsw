@@ -1,165 +1,73 @@
-# VSCode Theme Switcher CLI Tool Plan
+# Plan to Improve Contrast for Subtexts in Dark Mode
 
-## Project Overview
+## Problem Statement
 
-- **Name**: `vsw` (VSCode theme switcher)
-- **Language**: TypeScript
-- **Package Manager**: pnpm
-- **Linter**: Biome
-- **Purpose**: Switch VSCode color themes at the repository level
+In most dark themes in the VSW extension, subtexts (primarily comments) have low contrast with the background, making them difficult to read. This affects all dark themes across the different theme categories (color themes, vivid themes, and pastel themes).
 
-## Technical Approach
+## Current Contrast Issues
 
-VSCode uses `.vscode/settings.json` in each repository to store workspace-specific settings. Our CLI tool will modify the `workbench.colorTheme` property in this file to change themes.
+Here are some examples of the current low-contrast combinations:
 
-## Implementation Plan
+### Color Themes
 
-### 1. Project Setup
+- Ruby Red: comments use `#664444` on a `#1a0000` background
+- Emerald Green: comments use `#446644` on a `#001a00` background
+- Sapphire Blue: comments use `#444466` on a `#00001a` background
 
-- Initialize a new TypeScript project with pnpm
-  ```bash
-  pnpm init
-  pnpm add -D typescript @types/node tsx
-  pnpm exec tsc --init
-  ```
-- Configure Biome for linting
-  ```bash
-  pnpm add -D @biomejs/biome
-  ```
-- Set up the project structure
-- Configure TypeScript compiler options
-- Add necessary dependencies:
-  ```bash
-  pnpm add commander fs-extra chalk inquirer
-  pnpm add -D @types/fs-extra @types/inquirer
-  ```
+### Vivid Themes
 
-### 2. Core Functionality
+- Neon Lights: comments use `#4d4d7a` on a `#0f0f1b` background
+- Synthwave: comments use `#6d5a7d` on a `#241b2f` background
+- Cyberpunk: comments use `#495495` on a `#120b20` background
 
-- Create functions to:
-  - Read the current VSCode settings from `.vscode/settings.json`
-  - Create the settings file if it doesn't exist
-  - Update the theme setting
-  - List available themes (potentially from VSCode's global settings)
-  - Save user's favorite themes for quick access
+### Pastel Themes
 
-### 3. CLI Interface
+- Pastel Dark: comments use `#7f848e` on a `#282c34` background
+- Panda Syntax: comments use `#676b79` on a `#292a2b` background
+- Rainglow Tonic: comments use `#777777` on a `#2a2a2a` background
 
-- Create a command-line interface with the following commands:
-  - `vsw set <theme-name>` - Set a specific theme
-  - `vsw list` - List available/favorite themes
-  - `vsw add <theme-name>` - Add a theme to favorites
-  - `vsw remove <theme-name>` - Remove a theme from favorites
-  - `vsw current` - Show the current theme
-  - `vsw dark` - Switch to a dark theme (from favorites)
-  - `vsw light` - Switch to a light theme (from favorites)
+## Solution Approach
 
-### 4. Theme Management
+### 1. Create a Contrast Utility Function
 
-- Implement a way to store and retrieve user's favorite themes
-  - Store favorites in a configuration file in the user's home directory
-- Add functionality to switch between light and dark themes quickly
-- Provide a way to categorize themes (dark/light)
+Create a utility function that can calculate and adjust colors to ensure they meet a minimum contrast ratio with the background. This function will be used to generate higher contrast colors for comments in dark themes.
 
-### 5. Testing and Documentation
-
-- Write tests for core functionality
-- Create comprehensive documentation
-- Add usage examples
-
-## Project Structure
-
-```
-vsw/
-├── src/
-│   ├── index.ts           # Entry point
-│   ├── cli.ts             # CLI interface
-│   ├── theme-manager.ts   # Theme management functionality
-│   ├── settings.ts        # VSCode settings operations
-│   └── utils/             # Utility functions
-│       ├── config.ts      # Configuration management
-│       └── logger.ts      # Logging utilities
-├── dist/                  # Compiled JavaScript
-├── tests/                 # Test files
-├── .vscode/               # VSCode settings
-├── package.json           # Project dependencies
-├── pnpm-lock.yaml         # pnpm lock file
-├── tsconfig.json          # TypeScript configuration
-├── biome.json             # Biome configuration
-└── README.md              # Project documentation
+```typescript
+// Example utility function
+function ensureMinimumContrast(
+  foreground: string,
+  background: string,
+  minContrastRatio: number = 4.5
+): string {
+  // Calculate contrast ratio between foreground and background
+  // If below minimum, adjust foreground color to meet the minimum contrast ratio
+  // Return the adjusted foreground color
+}
 ```
 
-## Development Roadmap
+### 2. Update Theme Colors
 
-1. **Phase 1: Basic Setup**
+Modify the comment colors in all dark themes to ensure they have sufficient contrast with their respective backgrounds. This will involve:
 
-   - Initialize project with TypeScript and pnpm
-   - Configure Biome
-   - Set up basic project structure
+- Updating the comment colors in `color-themes.ts`
+- Updating the comment colors in `vivid-themes.ts`
+- Updating the comment colors in `theme-colors.ts`
 
-2. **Phase 2: Core Functionality**
+### 3. Implementation Steps
 
-   - Implement VSCode settings file operations
-   - Create theme switching logic
-   - Implement configuration storage
+1. Create a new utility file `src/utils/color-utils.ts` with contrast calculation and adjustment functions
+2. Update the comment colors in each theme file using the utility function
+3. Test the changes to ensure they provide better readability
 
-3. **Phase 3: CLI Interface**
+### 4. Contrast Guidelines
 
-   - Implement command-line interface using Commander.js
-   - Add command handlers
-   - Add interactive theme selection with Inquirer
+For text readability, we'll aim for the following contrast ratios:
 
-4. **Phase 4: Advanced Features**
+- Normal text: At least 4.5:1 contrast ratio (WCAG AA standard)
+- Large text: At least 3:1 contrast ratio
 
-   - Add favorite themes management
-   - Implement dark/light theme categorization
-   - Add theme auto-detection capabilities
+Since comments are typically the same size as normal code, we'll aim for at least a 4.5:1 contrast ratio.
 
-5. **Phase 5: Finalization**
-   - Write tests
-   - Create documentation
-   - Prepare for distribution (npm package)
+## Expected Outcome
 
-## Implementation Details
-
-### VSCode Settings Management
-
-The tool will need to:
-
-1. Check if `.vscode/settings.json` exists in the current directory
-2. Create it if it doesn't exist
-3. Read the current settings
-4. Modify the `workbench.colorTheme` property
-5. Write the updated settings back to the file
-
-### Theme Management
-
-For theme management, we'll:
-
-1. Store user's favorite themes in a configuration file
-2. Categorize themes as dark or light
-3. Allow quick switching between theme categories
-4. Provide a way to list and select from installed themes
-
-### User Experience
-
-The CLI will provide:
-
-1. Clear feedback on actions taken
-2. Colorful output for better readability
-3. Interactive selection for theme choosing
-4. Error handling with helpful messages
-
-## Challenges and Considerations
-
-- Handling different VSCode versions and their theme formats
-- Managing themes that might not be installed in the user's VSCode
-- Ensuring proper error handling for various edge cases
-- Supporting different operating systems
-
-## Future Enhancements
-
-- Add support for time-based theme switching
-- Implement theme switching based on system dark/light mode
-- Add support for theme preview
-- Create a simple GUI interface
+After implementing these changes, subtexts (comments) in dark themes will be more readable due to increased contrast with the background. This will improve the overall user experience, especially for users who rely on comments for code understanding or who have visual impairments.
