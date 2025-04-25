@@ -208,7 +208,26 @@ pnpm lint
 
 # Format the code
 pnpm format
+
+# Check formatting without modifying files
+pnpm format-check
+
+# Type check
+pnpm type-check
 ```
+
+## Continuous Integration
+
+This project uses GitHub Actions for continuous integration. The CI pipeline runs automatically on push to the main branch and on pull requests to ensure code quality and consistency.
+
+The CI workflow includes:
+
+- **Linting**: Checks code for potential errors and enforces coding standards using Biome
+- **Format checking**: Ensures code follows consistent formatting rules
+- **Type checking**: Verifies TypeScript types are correct
+- **Building**: Ensures the project builds successfully
+
+You can view the CI workflow configuration in `.github/workflows/ci.yml`.
 
 ## License
 
