@@ -1,6 +1,6 @@
 {
   "name": "vsw",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "VSCode theme switcher CLI tool",
   "main": "dist/index.js",
   "bin": {
